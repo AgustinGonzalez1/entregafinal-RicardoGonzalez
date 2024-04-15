@@ -188,11 +188,11 @@ def update_teacher(request, id):
 def profile(request):
   
   user = request.user
-  email = user.email
   
-  if not user.is_anonymous:
+  if user.is_authenticated == False:
     return redirect('/')
   
+  email = user.email
   if request.method == 'POST':
     form = UserEditForm(request.POST)
     if form.is_valid():
